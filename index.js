@@ -17,7 +17,8 @@ const bannerRouter = require("./routes/bannerRoutes");
 const carRouter = require("./routes/carRoutes");
 const addressRouter = require("./routes/addressRoutes");
 const orderRouter = require("./routes/orderRoutes");
-const subscriber=require("./routes/subscriberRoutes")
+const subscriber = require("./routes/subscriberRoutes")
+const bannerimage = require("./routes/banner-routes")
 
 require("dotenv").config();
 const app = express();
@@ -54,11 +55,12 @@ app.use("/", bannerRouter);
 app.use("/", carRouter);
 app.use("/", addressRouter);
 app.use("/", orderRouter);
-app.use("/", subscriber)
+app.use("/", subscriber);
+app.use("/", bannerimage)
 
 
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-   console.log(`Server is running on port ${process.env.PORT}`);
- });
+  console.log(`Server is running on port ${process.env.PORT}`);
+});
