@@ -19,6 +19,8 @@ const addressRouter = require("./routes/addressRoutes");
 const orderRouter = require("./routes/orderRoutes");
 const subscriber = require("./routes/subscriberRoutes")
 const bannerimage = require("./routes/banner-routes")
+const homeproduct = require("./routes/homeproduct-routes")
+
 
 require("dotenv").config();
 const app = express();
@@ -57,6 +59,7 @@ app.use("/", addressRouter);
 app.use("/", orderRouter);
 app.use("/", subscriber);
 app.use("/", bannerimage)
+app.use("/", homeproduct)
 
 
 const PORT = process.env.PORT || 5000;
