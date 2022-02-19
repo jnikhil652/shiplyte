@@ -35,7 +35,7 @@ exports.gethomeproduct = async (req, res) => {
 
 exports.updatehomeproduct = async (req, res) => {
     try {
-        const image = req.file.path;
+        const productimage = req.file ? req.file.filename : null;
         const { additionalinformation, availaibility, brand, category, color, Content, description, price, productImage, quantity, review, subtitle, title, tags } = req.body;
         const updatehomeproduct = await Homeproduct.findByIdAndUpdate(req.params.id, {
             additionalinformation,
@@ -46,18 +46,18 @@ exports.updatehomeproduct = async (req, res) => {
             Content,
             description,
             price,
-            productImage: image,
             quantity,
             review,
             subtitle,
             title,
-            tags
+            tags,
+            productImage: productimage
         })
         console.log(updatehomeproduct)
         return res.status(200).json({ msg: "homepoduct update successfull", updatehomeproduct })
     } catch (error) {
         console.log(error)
-        return res.status(400).json({ msg: "something went wrong" })
+        return res.status(400).json({ msg: "something went wrong", error: error.message })
     }
 }
 

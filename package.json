@@ -1,7 +1,7 @@
 {
   "name": "lamborghini-api",
   "version": "1.0.0",
-  "description": "",
+  "description": "\u0000",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
@@ -28,5 +28,14 @@
     "multer": "^1.4.3",
     "nodemailer": "^6.7.2",
     "nodemon": "^2.0.15"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shadab1node/lambhorgini.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/Shadab1node/lambhorgini/issues"
+  },
+  "homepage": "https://github.com/Shadab1node/lambhorgini#readme"
 }
