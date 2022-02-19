@@ -3,7 +3,7 @@ const BannerImage = require("../models/bannerModel")
 
 // ADD BANNER
 
-var url = "https://limitless-bayou-76097.herokuapp.com/upload/Image"
+var url = "https://lamborghini-12345.herokuapp.com/upload/Image"
 exports.bannerAdd = async (req, res) => {
     try {
         const banner = req.file.path
