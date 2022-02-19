@@ -20,7 +20,7 @@ const orderRouter = require("./routes/orderRoutes");
 const subscriber = require("./routes/subscriberRoutes")
 const bannerimage = require("./routes/banner-routes")
 const homeproduct = require("./routes/homeproduct-routes")
-
+const path = require("path")
 
 require("dotenv").config();
 const app = express();
@@ -31,6 +31,7 @@ app.use(cookieParser());
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use("/public", express.static("public"));
+app.use("/upload", express.static(path.join(__dirname, "upload")));
 
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
