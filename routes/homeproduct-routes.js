@@ -1,10 +1,10 @@
 const multer = require("multer");
 var path = require("path")
 
-// var productImage = multer.diskStorage({
-//     destination: function (req, file, cb) { cb(null, "./upload/Image") },
-//     filename: function (req, file, cb) { cb(null, Date.now() + path.extname(file.originalname)) },
-// });
+var productImage = multer.diskStorage({
+    destination: function (req, file, cb) { cb(null, "./upload/Image") },
+    filename: function (req, file, cb) { cb(null, Date.now() + path.extname(file.originalname)) },
+});
 var productImage = multer({ storage: productImage });
 
 const router = require("express").Router()
