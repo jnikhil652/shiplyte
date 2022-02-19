@@ -57,7 +57,7 @@ app.use("/", bannerRouter);
 app.use("/", carRouter);
 app.use("/", addressRouter);
 app.use("/", orderRouter);
-app.use("/", subscriber);
+app.use("/api", subscriber);
 app.use("/", bannerimage)
 app.use("/", homeproduct)
 
