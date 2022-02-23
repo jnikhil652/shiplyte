@@ -20,6 +20,7 @@ const orderRouter = require("./routes/orderRoutes");
 const subscriber = require("./routes/subscriberRoutes")
 const bannerimage = require("./routes/banner-routes")
 const homeproduct = require("./routes/homeproduct-routes")
+const exhaustRoutes = require("./routes/exhaust-routes")
 const path = require("path")
 
 require("dotenv").config();
@@ -61,7 +62,7 @@ app.use("/", orderRouter);
 app.use("/api", subscriber);
 app.use("/", bannerimage)
 app.use("/", homeproduct)
-
+app.use("/", exhaustRoutes)
 
 const PORT = process.env.PORT || 5000;
 
