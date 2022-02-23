@@ -21,7 +21,7 @@ exports.addexhaust = async (req, res) => {
 exports.getexaust = async (req, res) => {
     try {
         const getexhaust = await Exhaust.find({})
-        return res.status(200).json({ msg: "exhaust getted" })
+        return res.status(200).json({ msg: "exhaust getted", getexhaust })
 
     } catch (error) {
         return res.status(400).json({ msg: "something went wrong" })
