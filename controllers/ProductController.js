@@ -25,6 +25,7 @@ module.exports.addProduct = async (req, res) => {
   } = req.body;
   try {
     const addProduct = await Product.create({
+      user: req.user._id,
       carBrand,
       supplier,
       partsBrand,
@@ -139,11 +140,11 @@ exports.getFeaturedProduct = async (req, res) => {
 
     getProduct.map((product) => {
       getCar.map((car) => {
-        if (product.carBrand.brandName == car.brand.brandName) {  
-          if (product.seriesNumber.seriesName == car.series.seriesName){
-              return res.status(200).json(product)
-           }
-         }
+        if (product.carBrand.brandName == car.brand.brandName) {
+          if (product.seriesNumber.seriesName == car.series.seriesName) {
+            return res.status(200).json(product)
+          }
+        }
       });
     });
     // return res.json({msg: 'after getproduct'})
@@ -154,18 +155,18 @@ exports.getFeaturedProduct = async (req, res) => {
 
 
 exports.addFavroite = async (req, res,) => {
- try {
+  try {
     const product = await Product.findById(req.params.id);
 
 
-   if(product.status == "pending"){
-    product.status = "favroite"
- 
-   }else if (product.status == "favroite" ){
-    product.status="pending"
-   }
+    if (product.status == "pending") {
+      product.status = "favroite"
 
-   await product.save()
+    } else if (product.status == "favroite") {
+      product.status = "pending"
+    }
+
+    await product.save()
 
     return res.status(200).json({ msg: `status changed to ${product.status}` });
   } catch (error) {

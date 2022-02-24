@@ -6,6 +6,10 @@ const productSchema = new Schema(
       ref: "brand",
       required: true,
     },
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: "user"
+    },
     supplier: {
       type: String,
       required: true,
@@ -67,15 +71,15 @@ const productSchema = new Schema(
       required: true,
     },
 
-    status:{
-      type:String,
-      default:"pending"
+    status: {
+      type: String,
+      default: "pending"
     },
-       image: {
+    image: {
       type: String,
       required: true,
     },
   }
-],
- { timestamps: true });
+  ],
+  { timestamps: true });
 module.exports = model("product", productSchema);
