@@ -52,7 +52,7 @@ module.exports.addProduct = async (req, res) => {
 
 module.exports.viewProduct = async (req, res) => {
   try {
-    const viewProduct = await Product.find({})
+    const viewProduct = await Product.find({ user: req.user._id })
       .populate("carBrand", "brandName")
       .populate("seriesNumber", "seriesName")
       .populate("chassisNumber", "number")
@@ -115,8 +115,8 @@ module.exports.updateProduct = async (req, res) => {
 
 module.exports.deleteProduct = async (req, res) => {
   try {
-    const deleteProduct = await Product.findByIdAndRemove({
-      _id: ObjectId(req.params.id),
+    const deleteProduct = await Product.deleteOne({
+      user: req.user._id
     });
     return res.status(200).json({ msg: "Product deleted succesfully" });
   } catch (error) {
