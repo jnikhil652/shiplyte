@@ -10,18 +10,13 @@ var image = multer.diskStorage({
 });
 var image = multer({ storage: image });
 
-const imageUplods = image.fields([
-    { name: 'audio1', maxCount: 1 },
-    { name: 'audio2', maxCount: 1 },
-]);
-
-
 const router = require("express").Router()
-const Controller = require("../controllers/exhaustController")
+const Controller = require("../controllers/subbrandController")
 
+router.route("/addsubbrand").post(image.single("image"), Controller.addsubbrand)
+router.route("/getsubbrand").get(Controller.getsubbrand)
+router.route("/updatesubbrand/:id").put(image.single("image"), Controller.updatesubbrand)
+router.route("/deletesubbrand/:id").delete(Controller.deletesubbrand)
 
-router.route("/addexhaust").post(imageUplods, Controller.addexhaust)
-router.route("/getexhaust").get(Controller.getexaust)
-router.route("/deleteexhaust/:id").delete(Controller.deleteexhaust)
 
 module.exports = router

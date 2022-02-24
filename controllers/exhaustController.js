@@ -33,7 +33,7 @@ exports.getexaust = async (req, res) => {
 
 exports.deleteexhaust = async (req, res) => {
     try {
-        const deleteexhaust = await Exhaust.deleteOne({})
+        const deleteexhaust = await Exhaust.deleteOne({ _id: req.params.id })
         return res.status(200).json({ msg: "exhaust deleted", deleteexhaust })
 
     } catch (error) {

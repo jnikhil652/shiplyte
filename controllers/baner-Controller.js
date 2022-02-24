@@ -3,24 +3,17 @@ const BannerImage = require("../models/bannerModel")
 
 // ADD BANNER
 
-var url = "https://lamborghini-12345.herokuapp.com/"
+var url = `https://lamborghini-12345.herokuapp.com`
 exports.bannerAdd = async (req, res) => {
     try {
-        const banner = req.file.path
-        var bannerimage = new BannerImage();
-        bannerimage.banner = `${url}${banner}`;
+        const banner = req.file ? req.file.filename : null;
+        var bannerimage = new BannerImage(req.body);
+        bannerimage.banner = `${url}/${banner}`
         // bannerimage.admin = req.admin._id
-        bannerimage.save(function (err) {
-            if (err) {
-                console.log(err)
-                return res.status(500).json({
-                    msg: err.msg
-                })
-            }
-            return res.json({
-                message: "banner image add Successfully",
-                data: bannerimage,
-            });
+        bannerimage.save()
+        return res.json({
+            message: "banner image add Successfully",
+            data: bannerimage,
         });
     } catch (error) {
         console.log(error)
