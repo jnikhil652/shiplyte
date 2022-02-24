@@ -20,7 +20,7 @@ exports.getsubbrand = async (req, res) => {
     try {
         const getsubbrand = await Subbrand.find({})
         console.log(getsubbrand)
-        return res.status(200).json({ msg: "getsubbrand successfully" })
+        return res.status(200).json({ msg: "getsubbrand successfully", getsubbrand })
     } catch (error) {
         console.log(error)
         return res.status(400).json({ msg: "something went wrong" })
