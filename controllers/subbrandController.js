@@ -54,3 +54,15 @@ exports.deletesubbrand = async (req, res) => {
         return res.status(400).json({ msg: "something went wrong" })
     }
 }
+
+
+exports.getsubbrandbybrandid = async (req, res) => {
+    try {
+        const getsubbrandbybrandid = await Subbrand.find({ brand: req.params.id })
+        console.log(getsubbrandbybrandid)
+        return res.status(200).json({ msg: "get subbrand by brand successfully", getsubbrandbybrandid })
+    } catch (error) {
+        console.log(error)
+        return res.status(400).json({ msg: "something went wrong" })
+    }
+}

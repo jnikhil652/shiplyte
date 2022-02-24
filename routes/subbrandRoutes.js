@@ -17,6 +17,7 @@ router.route("/addsubbrand").post(image.single("image"), Controller.addsubbrand)
 router.route("/getsubbrand").get(Controller.getsubbrand)
 router.route("/updatesubbrand/:id").put(image.single("image"), Controller.updatesubbrand)
 router.route("/deletesubbrand/:id").delete(Controller.deletesubbrand)
+router.route("/getsubbrandbybrandid/:id").get(Controller.getsubbrandbybrandid)
 
 
 module.exports = router
