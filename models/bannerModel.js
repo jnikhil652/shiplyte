@@ -8,7 +8,7 @@ const bannerimageSchema = new Schema({
     },
     banner: {
         type: String
-    }
+    },
 },
     {
         timestamps: true
