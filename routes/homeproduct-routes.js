@@ -10,9 +10,9 @@ var productImage = multer({ storage: productImage });
 const router = require("express").Router()
 const Controller = require("../controllers/homeproduct-controller")
 
-router.route("/addhomeproduct").post(productImage.single("image"), Controller.addhomeproduct)
+router.route("/addhomeproduct").post(productImage.single("myField"), Controller.addhomeproduct)
 router.route("/gethomeproduct").get(Controller.gethomeproduct)
-router.route("/updatehomeproduct/:id").put(productImage.single("image"), Controller.updatehomeproduct)
+router.route("/updatehomeproduct/:id").put(productImage.single("myField"), Controller.updatehomeproduct)
 router.route("/deletehomeproduct/:id").delete(Controller.deletehomeproduct)
 router.route("/gethomeproductbyid/:id").get(Controller.gethomeproductbyid)
 

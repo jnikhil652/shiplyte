@@ -27,7 +27,7 @@ const homeproductSchema = new Schema({
     sellingPrice: {
         type: String
     },
-    image: {
+    myField: {
         type: String
     },
     quantity: {
@@ -42,7 +42,7 @@ const homeproductSchema = new Schema({
     tags: {
         type: String
     },
-    title: {
+    product: {
         type: String
     }
 })

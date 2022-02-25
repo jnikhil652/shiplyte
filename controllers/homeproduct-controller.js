@@ -6,7 +6,7 @@ exports.addhomeproduct = async (req, res) => {
     try {
         const image = req.file.path;
         const product = new Homeproduct(req.body)
-        product.image = image
+        product.myField = image
         product.save()
         console.log(product)
         return res.status(200).json({ msg: "home product add successfully" })
