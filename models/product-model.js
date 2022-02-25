@@ -24,10 +24,10 @@ const homeproductSchema = new Schema({
     description: {
         type: String
     },
-    sellingPrice: {
+    price: {
         type: String
     },
-    image: {
+    productImage: {
         type: String
     },
     quantity: {
