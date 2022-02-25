@@ -6,7 +6,7 @@ exports.addhomeproduct = async (req, res) => {
     try {
         const image = req.file.path;
         const product = new Homeproduct(req.body)
-        product.productImage = image
+        product.image = image
         product.save()
         console.log(product)
         return res.status(200).json({ msg: "home product add successfully" })
@@ -36,7 +36,7 @@ exports.gethomeproduct = async (req, res) => {
 exports.updatehomeproduct = async (req, res) => {
     try {
         const productimage = req.file ? req.file.filename : null;
-        const { additionalinformation, availaibility, brand, category, color, Content, description, price, productImage, quantity, review, subtitle, title, tags } = req.body;
+        const { additionalinformation, availaibility, brand, category, color, Content, description, sellingPrice, image, quantity, review, subtitle, title, tags } = req.body;
         const updatehomeproduct = await Homeproduct.findByIdAndUpdate(req.params.id, {
             additionalinformation,
             availaibility,
@@ -45,13 +45,13 @@ exports.updatehomeproduct = async (req, res) => {
             color,
             Content,
             description,
-            price,
+            sellingPrice,
             quantity,
             review,
             subtitle,
             title,
             tags,
-            productImage: productimage
+            image: productimage
         })
         console.log(updatehomeproduct)
         return res.status(200).json({ msg: "homepoduct update successfull", updatehomeproduct })
