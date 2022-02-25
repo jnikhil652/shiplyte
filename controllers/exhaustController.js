@@ -4,10 +4,10 @@ const Exhaust = require("../models/exaushd")
 
 exports.addexhaust = async (req, res) => {
     try {
-        const url = `https://lamborghini-12345.herokuapp.com/upload/Image`
-        const exhaust = new Exhaust(req.body) 
-        exhaust.audio1 = `${url}/${req.files['audio1'][0].filename}`
-        exhaust.audio2 = `${url}/${req.files['audio2'][0].filename}`
+        // const url = `https://lamborghini-12345.herokuapp.com/upload/Image`
+        const exhaust = new Exhaust(req.body)
+        exhaust.audio1 = req.files['audio1'][0].filename
+        exhaust.audio2 = req.files['audio2'][0].filename
         exhaust.save()
         return res.status(200).json({ msg: "exhaust added" })
     } catch (error) {
