@@ -5,7 +5,7 @@ const auth = require("../utils/auth");
 
 router.post("/addOrder", auth, addOrder);
 router.post("/viewOrder/:id", auth, viewOrderById);
-router.get("/getOrder", getOrder);
+router.get("/getOrder", auth, getOrder);
 router.get("/cancelOrder", auth, cancelOrder);
 
 
