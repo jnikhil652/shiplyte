@@ -2,6 +2,7 @@ const ObjectId = require("mongodb").ObjectID;
 const Product = require("../models/Product");
 const Car = require("../models/Car");
 var fs = require('fs');
+const axios = require('axios');
 
 module.exports.addProduct = async (req, res) => {
   const productImage = req.file ? req.file.path : null;
@@ -44,6 +45,7 @@ module.exports.addProduct = async (req, res) => {
       image: productImage,
       status
     });
+
     return res.status(200).json({ msg: "Product added succesfully" });
   } catch (error) {
     return res.status(500).json({ msg: error.message });
@@ -52,7 +54,7 @@ module.exports.addProduct = async (req, res) => {
 
 module.exports.viewProduct = async (req, res) => {
   try {
-    const viewProduct = await Product.find({ user: req.user._id })
+    const viewProduct = await Product.find({})
       .populate("carBrand", "brandName")
       .populate("seriesNumber", "seriesName")
       .populate("chassisNumber", "number")

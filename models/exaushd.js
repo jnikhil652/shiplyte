@@ -10,6 +10,12 @@ const exhaustSchema = new Schema({
     },
     audio2: {
         type: String
+    },
+    image: {
+        type: String
+    },
+    description: {
+        type: String
     }
 },
     {

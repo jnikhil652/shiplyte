@@ -22,8 +22,10 @@ const bannerimage = require("./routes/banner-routes")
 const homeproduct = require("./routes/homeproduct-routes")
 const exhaustRoutes = require("./routes/exhaust-routes")
 const subbrandRoutes = require("./routes/subbrandRoutes")
-
+const axios = require('axios');
+const crypto = require("crypto")
 const path = require("path")
+
 
 require("dotenv").config();
 const app = express();
@@ -31,12 +33,30 @@ const app = express();
 app.use(cors());
 app.use(cookieParser());
 
-app.use(cors());
 app.use(express.urlencoded({ extended: true }));
-app.use("/public", express.static("public"));
-app.use("/upload", express.static(path.join(__dirname, "upload")));
+app.use((req, res, next) => {
+  const timestamp = +new Date();
+  const appID = process.env.SHIPLYTE_APPID;
+  const key = process.env.SHIPLYTE_PUBLIC_KEY;
+  const secret = new Buffer(process.env.SHIPLYTE_PRIVATE_KEY);
 
-app.use(function (req, res, next) {
+  const generateAuth = () => {
+    let sign = `key:${key}id:${appID}:timestamp:${timestamp}`
+    let hash = crypto.createHmac(`sha256`, secret)
+      .update(sign)
+      .digest(`base64`).toString()
+
+    let encoded = encodeURIComponent(hash)
+    return encoded
+  }
+  axios.defaults.baseURL = process.env.SHIPLYTE_BASEURL;
+  axios.defaults.headers.common = {
+    'x-appid': process.env.SHIPLYTE_APPID,
+    'x-sellerid': process.env.SHIPLYTE_SELLERID,
+    'x-timestamp': timestamp,
+    'Authorization': generateAuth(),
+    'x-version': process.env.SHIPLYTE_VERSION
+  };
   res.header("Access-Control-Allow-Origin", "*");
   res.header(
     "Access-Control-Allow-Headers",
@@ -44,6 +64,9 @@ app.use(function (req, res, next) {
   );
   next();
 });
+app.use("/public", express.static("public"));
+app.use("/upload", express.static(path.join(__dirname, "upload")));
+
 
 connect();
 app.use(bodyParser.json());

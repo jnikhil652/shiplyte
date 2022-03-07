@@ -25,7 +25,7 @@ const {
 } = require("../controllers/ProductController");
 
 router.post("/addProduct", upload.single("myField"), auth, addProduct);
-router.get("/viewProduct", auth, viewProduct);
+router.get("/viewProduct",  viewProduct);
 router.patch("/updateProduct/:id", upload.single("myField"), updateProduct);
 router.delete("/deleteProduct/:id", deleteProduct);
 router.get("/getFeaturedProduct", getFeaturedProduct);
